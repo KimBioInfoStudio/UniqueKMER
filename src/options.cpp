@@ -34,8 +34,13 @@ bool Options::validate() {
 
     if(!outdir.empty()) {
         if(!file_exists(outdir)) {
-            if(mkdir(outdir.c_str(), 0755)!=0)
-                error_exit("Failed to create directory: " + outdir);
+            #ifdef __MINGW64__
+                if(mkdir(outdir.c_str())!=0)
+                    error_exit("Failed to create directory: " + outdir);
+            #else
+                if(mkdir(outdir.c_str(), 0755)!=0)
+                    error_exit("Failed to create directory: " + outdir);
+            #endif
         }
 
         if(!is_directory(outdir))

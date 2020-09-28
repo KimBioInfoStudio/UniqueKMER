@@ -38,6 +38,16 @@ make
 make install
 ```
 
+## compile from source for windows users with MinGW64-distro
+Get compiler from https://nuwen.net/mingw.html and install as How to install section.
+
+```shell
+git clone -b master --depth=1 https://github.com/OpenGene/UniqueKMER.git
+cd 
+make
+## add fastp to your PATH
+```
+
 # simple example:
 ```shell
 uniquekmer -f test.fasta

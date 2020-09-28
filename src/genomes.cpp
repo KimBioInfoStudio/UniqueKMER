@@ -483,16 +483,26 @@ void Genomes::output() {
         string folder = to_string(contigSize % 100);
         string path = joinpath(mOptions->outdir,"genomes_kmers");
         if(!file_exists(path)) {
+            #ifdef __MINGW64__
+            if(mkdir(path.c_str()) != 0)
+                error_exit("Failed to create directory: " + path);
+            #else
             if(mkdir(path.c_str(), 0755) != 0)
                 error_exit("Failed to create directory: " + path);
+            #endif
         } else {
             if(!is_directory(path))
                 error_exit("Not a directory: " + path);
         }
         path = joinpath(path,folder);
         if(!file_exists(path)) {
+            #ifdef __MINGW64__
+            if(mkdir(path.c_str()) != 0)
+                error_exit("Failed to create directory: " + path);
+            #else
             if(mkdir(path.c_str(), 0755) != 0)
                 error_exit("Failed to create directory: " + path);
+            #endif
         } else {
             if(!is_directory(path))
                 error_exit("Not a directory: " + path);
